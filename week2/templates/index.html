@@ -1,0 +1,8 @@
+$def with (todos)
+<ul>
+$for todo in todos:
+    <li id="$todo.isbn"><b>$todo.titlu</b> de $todo.autor</li>
+</ul>
+
+<p><a href="/upload_book">Upload a book now!</a></p>
+<p><a href="/upload_image">Upload an image now!</a></p>
