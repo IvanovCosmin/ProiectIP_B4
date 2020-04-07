@@ -1,0 +1,34 @@
+$def with ()
+
+<h1>Upload an image, would you?</h1>
+<!--
+<form method="POST" enctype=”multipart/form-data”  action="/add_img">
+    
+    <p>
+        <label for="titlu">Titlu:</label>  
+        <input type="text" name="titlu" /> 
+    </p>
+
+    <p>
+        <label for="img">Selectati imaginea:</label>  
+        <input type="file" name="img" accept="image/*"/> 
+    </p>
+
+    
+    <p><input type="submit" value="Add" /></p>
+</form>
+--->
+
+<form method="POST" enctype="multipart/form-data" action="/upload">
+    <p>
+        <label for="titlu">Titlu:</label>  
+        <input type="text" name="titlu" /> 
+    </p>
+
+    <p>
+        <label for="myfile">Selectati imaginea:</label>  
+        <input type="file" name="myfile" accept="image/*"/>
+    </p>
+    
+    <input type="submit" value="Add"/>
+</form>
