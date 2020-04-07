@@ -179,5 +179,8 @@ namespace IP_Framework
         DataBaseDestroyData,
         DataBaseQueryData,
         DataBaseAlterData,
+
+        CheckSigsForUser = 501,
+        ReloadSigs = 502
     }
 }
