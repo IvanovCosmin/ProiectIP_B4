@@ -6,4 +6,12 @@
     <RootNamespace>IP_Framework</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Signatures\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Jint" Version="2.11.58" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,7 @@
+C:\Work\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.deps.json
+C:\Work\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.runtimeconfig.json
+C:\Work\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.runtimeconfig.dev.json
+C:\Work\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.dll
+C:\Work\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csprojAssemblyReference.cache
+C:\Work\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfoInputs.cache
+C:\Work\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfo.cs
