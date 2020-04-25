@@ -1,0 +1,7 @@
+{
+        "glicemie": {
+		"tip": "interval",
+		"min": 25,
+		"max": 40
+	}
+}

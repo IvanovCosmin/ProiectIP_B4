@@ -1,0 +1,1 @@
+﻿if(hasSymptom('pl mica') && hasSymptom('Smecheras')) log('Fraier');
