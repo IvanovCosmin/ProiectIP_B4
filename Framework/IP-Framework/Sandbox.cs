@@ -6,30 +6,6 @@ using Jint; // javascript interpretor for .net
 
 namespace IP_Framework
 {
-    // the user wrapper. todo everything here
-    class UserWrapper
-    {
-        public string Name { get; set; }
-        List<string> Symptoms { get; set; }
-        public UserWrapper(string name)
-        {
-            Name = name;
-            Symptoms = new List<string>();
-        }
-        public void AddNewSymptom(string symptom)
-        {
-            Symptoms.Add(symptom);
-        }
-        public bool HasSymptom(string Symptom)
-        {
-            return Symptoms.Contains(Symptom);
-        }
-
-        public bool HasSymptomInArea(string Symptom)
-        {
-            return true;
-        }
-    }
 
     class Signature
     {

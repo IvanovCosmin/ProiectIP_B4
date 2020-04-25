@@ -6,16 +6,15 @@ namespace IP_Framework
     {
         static void Main(string[] args)
         {
-            EventHandler newHandler = new EventHandler();
+            InternalDbHandler.DBModule internalDB = Utils.Singleton<InternalDbHandler.DBModule>.Instance;
 
+            internalDB.GetUserHandler().ShowData();
 
-            byte[] array = new byte[100];
+            UserWrapper user = new UserWrapper("2");
 
-            EventHandlerContext context = new EventHandlerContext(array, 100);
-            context.command = EventHandlerFunctions.SymptomBasedDetectionModule;
-            context.subModuleCommand = SubModuleFunctions.StartForm;
+            internalDB.GetUserHandler().InsertUser(user);
 
-            Console.WriteLine(newHandler.InvokeCommand(context));
+            internalDB.GetUserHandler().ShowData();
 
         }
     }
