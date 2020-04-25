@@ -124,7 +124,7 @@ namespace IP_Framework
                     sig.priority = 1;
                 }
 
-                sigData = sigData.Replace(Signature.PriorityConstants.PRIORITY_HIGH, "")
+                sigData = sigData.Replace(Signature.PriorityConstants.PRIORITY_HIGH, ":(")
                            .Replace(Signature.PriorityConstants.PRIORITY_MEDIUM, "")
                            .Replace(Signature.PriorityConstants.PRIORITY_LOW, "");
 

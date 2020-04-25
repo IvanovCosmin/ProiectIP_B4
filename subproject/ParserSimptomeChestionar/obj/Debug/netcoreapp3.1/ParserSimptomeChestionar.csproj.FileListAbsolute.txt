@@ -1,0 +1,13 @@
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\bin\Debug\netcoreapp3.1\ParserSimptomeChestionar.exe
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\bin\Debug\netcoreapp3.1\ParserSimptomeChestionar.deps.json
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\bin\Debug\netcoreapp3.1\ParserSimptomeChestionar.runtimeconfig.json
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\bin\Debug\netcoreapp3.1\ParserSimptomeChestionar.runtimeconfig.dev.json
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\bin\Debug\netcoreapp3.1\ParserSimptomeChestionar.dll
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\bin\Debug\netcoreapp3.1\ParserSimptomeChestionar.pdb
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\obj\Debug\netcoreapp3.1\ParserSimptomeChestionar.csprojAssemblyReference.cache
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\obj\Debug\netcoreapp3.1\ParserSimptomeChestionar.AssemblyInfoInputs.cache
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\obj\Debug\netcoreapp3.1\ParserSimptomeChestionar.AssemblyInfo.cs
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\obj\Debug\netcoreapp3.1\ParserSimptomeChestionar.dll
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\obj\Debug\netcoreapp3.1\ParserSimptomeChestionar.pdb
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\cosmi\source\repos\ParserSimptomeChestionar\ParserSimptomeChestionar\obj\Debug\netcoreapp3.1\ParserSimptomeChestionar.csproj.CopyComplete
