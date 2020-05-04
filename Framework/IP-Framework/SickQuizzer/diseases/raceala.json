@@ -1,0 +1,17 @@
+﻿{
+	"temperatura": {
+		"tip": "interval",
+		"min": 37.7,
+		"importanta": 20
+	},
+	"durere de cap": {
+		"tip": "existenta",
+		"valoare": true,
+		"importanta": 10
+	},
+	"tuse": {
+		"tip": "existenta",
+		"valoare": true,
+		"importanta": 50
+	}
+}
