@@ -1,0 +1,27 @@
+﻿{
+  "tuse": {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 50
+  },
+  "temperatura": {
+    "tip": "interval",
+    "min": 37.7,
+    "importanta": 10
+  },
+  "dificultati de respiratie" {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 50
+  },
+  "durere in piept" {
+    "tip": "nivel_durere",
+    "min": "mediu",
+    "importanta": 30
+  },
+  "pierdere a poftei de mancare": {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 10
+  }
+}

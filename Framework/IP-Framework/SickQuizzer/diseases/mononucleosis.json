@@ -1,0 +1,27 @@
+﻿{
+  "oboseala continua": {
+    "tip": "interval",
+    "valoare": true,
+    "importanta": 80
+  },
+  "durere de gat": {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 10
+  },
+  "febra": {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 50
+  },
+  "temperatura": {
+    "tip": "interval",
+    "min": 37.7,
+    "importanta": 20
+  },
+  "pierdere a poftei de mancare": {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 20
+  }
+}

@@ -1,0 +1,17 @@
+﻿{
+  "temperatura": {
+    "tip": "interval",
+    "min": 37.5,
+    "importanta": 10
+  },
+  "bube rosii pe corp": {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 50
+  },
+  "pierdere a poftei de mancare": {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 10
+  }
+}
