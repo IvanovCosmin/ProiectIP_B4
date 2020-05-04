@@ -14,8 +14,20 @@ namespace IP_Framework
             //UserWrapper user = new UserWrapper("3");
             //internalDB.GetUserHandler().InsertUser(user);
 
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(@"logs.txt", true))
+            {
+                file.WriteLine("scriu aici chestii");
+            }
+
             CreateWebHostBuilder(args).Build().Run();
-         
+
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(@"logs.txt", true))
+            {
+                file.WriteLine("a pornit serverul");
+            }
+
 
         }
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
