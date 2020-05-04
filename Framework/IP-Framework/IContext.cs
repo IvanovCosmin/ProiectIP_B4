@@ -8,6 +8,7 @@ namespace IP_Framework
     {
         public byte[] context;
         public int sizeOfContext;
+        public String json;
 
         public IContext(byte[] initContext, int initSizeOfContext)
         {
@@ -19,6 +20,11 @@ namespace IP_Framework
         {
             context = null;
             sizeOfContext = 0;
+        }
+
+        public IContext(String json)
+        {
+            this.json = json;
         }
     }
 
