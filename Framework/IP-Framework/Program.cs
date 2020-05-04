@@ -9,10 +9,10 @@ namespace IP_Framework
     {
         static void Main(string[] args)
         {
-            InternalDbHandler.DBModule internalDB = Utils.Singleton<InternalDbHandler.DBModule>.Instance;            
-            internalDB.GetUserHandler().ShowData();
-            UserWrapper user = new UserWrapper("3");
-            internalDB.GetUserHandler().InsertUser(user);
+            //InternalDbHandler.DBModule internalDB = Utils.Singleton<InternalDbHandler.DBModule>.Instance;            
+            //internalDB.GetUserHandler().ShowData();
+            //UserWrapper user = new UserWrapper("3");
+            //internalDB.GetUserHandler().InsertUser(user);
 
             CreateWebHostBuilder(args).Build().Run();
          
