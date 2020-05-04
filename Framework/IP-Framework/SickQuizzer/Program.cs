@@ -160,13 +160,13 @@ namespace ParserSimptomeChestionar
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            QuSymptomsParser symptomsParser = new QuSymptomsParser();
+        //static void Main(string[] args)
+        //{
+        //    QuSymptomsParser symptomsParser = new QuSymptomsParser();
 
-            symptomsParser.FeedSignatures("C:\\Users\\fanghel\\source\\repos\\Quizzer\\Quizzer\\test.json.txt");
+        //    symptomsParser.FeedSignatures("C:\\Users\\fanghel\\source\\repos\\Quizzer\\Quizzer\\test.json.txt");
 
-            ISet<QuSignature> signatures = symptomsParser.GetSignatures();
-        }
+        //    ISet<QuSignature> signatures = symptomsParser.GetSignatures();
+        //}
     }
 }

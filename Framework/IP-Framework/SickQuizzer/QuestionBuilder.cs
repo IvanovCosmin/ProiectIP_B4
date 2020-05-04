@@ -6,8 +6,8 @@ namespace Quizzer
 {
     interface IQuizzerStrategy
     {
-        public string GetQuestionString(string symptomName);
-        public bool ApplyAnswerToSignature(QuSignature signature, string symptomName, Answer answer);
+        string GetQuestionString(string symptomName);
+        bool ApplyAnswerToSignature(QuSignature signature, string symptomName, Answer answer);
     }
 
     class QuizzerStrategyContext

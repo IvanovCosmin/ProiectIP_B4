@@ -36,6 +36,7 @@ namespace IP_Framework
         private EpidemyAlert EpidemyModule;
         private ImageProcessing ImageModule;
         private SymptomLearning SymptomModule;
+
         //private DataBaseHandler dbHandler; // TODO after the DB is alive
         // all modules should pe private, we need to encapsulate as much as possible
         // only this instances should have access to the data in the handler

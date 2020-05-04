@@ -14,7 +14,6 @@ namespace IP_Framework
             UserWrapper user = new UserWrapper("3");
             internalDB.GetUserHandler().InsertUser(user);
 
-            Console.WriteLine(newHandler.InvokeCommand(context));
             CreateWebHostBuilder(args).Build().Run();
          
 
