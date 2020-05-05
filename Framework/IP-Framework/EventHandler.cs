@@ -36,8 +36,8 @@ namespace IP_Framework
         private EpidemyAlert EpidemyModule;
         private ImageProcessing ImageModule;
         private SymptomLearning SymptomModule;
+        private DataBaseHandler dbHandler; // TODO after the DB is alive
 
-        //private DataBaseHandler dbHandler; // TODO after the DB is alive
         // all modules should pe private, we need to encapsulate as much as possible
         // only this instances should have access to the data in the handler
 
@@ -76,6 +76,8 @@ namespace IP_Framework
                     return SymptomModule.InvokeCommand(handlerContext.subModuleCommand, handlerContext.contextHandler);
                 case EventHandlerFunctions.SymptomBasedDetectionModule:
                     return SymptomBasedModule.InvokeCommand(handlerContext.subModuleCommand, handlerContext.contextHandler);
+                case EventHandlerFunctions.DataBaseModule:
+                    return dbHandler.InvokeCommand(handlerContext.subModuleCommand, handlerContext.contextHandler);
                 case EventHandlerFunctions.InvokeCommand:
                     return false; // INvoKE COmMAnD
             }
@@ -101,6 +103,8 @@ namespace IP_Framework
             ImageModule.Init(context, sizeOfContext);
             SymptomModule = new SymptomLearning(this);
             SymptomModule.Init(context, sizeOfContext);
+            dbHandler = new DataBaseHandler(this);
+            dbHandler.Init(context, sizeOfContext);
             return true;
         }
 
@@ -171,10 +175,9 @@ namespace IP_Framework
         ImageStoreResults,
         ImageAdapt,
 
-        EpidemyAskData = 301,
-        EpidemyStoreData,
-        EpidemyAlert,
-        EpidemyCheckForAlert,
+        EpidemyCheckForAlert = 301,
+        EpidemyCheckForSpecificAlert,
+        EpidemyCheckForAreas,
 
         DataBaseSaveData = 401,
         DataBaseDestroyData,
@@ -183,5 +186,14 @@ namespace IP_Framework
 
         CheckSigsForUser = 501,
         ReloadSigs = 502
+    }
+
+    public enum DataBaseDefines
+    {
+        DatabaseDiseases = 0,
+        DiseasesFullQuery,
+        DiseasesSpecificQueryDisease,
+        DiseasesSpecificQueryPerson,
+        GetAllDots,
     }
 }
