@@ -35,7 +35,7 @@ namespace IP_Framework
                     // form start
                     EventHandlerContext newContext = new EventHandlerContext(contextHandler.context, contextHandler.sizeOfContext);
                     newContext.command = EventHandlerFunctions.EpidemyAlertModule;
-                    newContext.subModuleCommand = SubModuleFunctions.EpidemyAlert;
+                    newContext.subModuleCommand = SubModuleFunctions.EpidemyCheckForSpecificAlert;
                     return fatherHandler.InvokeCommand(newContext);
                 default:
                     return false;

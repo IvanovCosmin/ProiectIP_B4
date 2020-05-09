@@ -40,16 +40,21 @@ namespace IP_Framework.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(@"logs.txt", true))
+            {
+                file.WriteLine("am inceput sa configurez serverul");
+            }
             Console.WriteLine("Succes");
-            if (env.IsDevelopment())
-            {
+            //if (env.IsDevelopment())
+            //{
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
-            }
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Error");
+            //    app.UseHsts();
+            //}
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -62,6 +67,12 @@ namespace IP_Framework.API
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(@"logs.txt", true))
+            {
+                file.WriteLine("am configurat serverul");
+            }
         }
     }
 }

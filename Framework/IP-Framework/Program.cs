@@ -13,10 +13,10 @@ namespace IP_Framework
             byte[] array = new byte[100];
 
             EventHandlerContext context = new EventHandlerContext(array, 100);
-            InternalDbHandler.DBModule internalDB = Utils.Singleton<InternalDbHandler.DBModule>.Instance;            
-            internalDB.GetUserHandler().ShowData();
-            UserWrapper user = new UserWrapper("3");
-            internalDB.GetUserHandler().InsertUser(user);
+            //InternalDbHandler.DBModule internalDB = Utils.Singleton<InternalDbHandler.DBModule>.Instance;            
+            //internalDB.GetUserHandler().ShowData();
+            //UserWrapper user = new UserWrapper("3");
+            //internalDB.GetUserHandler().InsertUser(user);
             Console.WriteLine(newHandler.InvokeCommand(context));
             CreateWebHostBuilder(args).Build().Run();
         }

@@ -1,0 +1,17 @@
+﻿{
+  "durere la nivelul ochilor": {
+    "tip": "existents",
+    "valoare": true,
+    "importanta": 20
+  },
+  "roseata in ochi": {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 50
+  },
+  "lacrimare intensa a ochilor": {
+    "tip": "existenta",
+    "valoare": true,
+    "importanta": 50
+  }
+}
