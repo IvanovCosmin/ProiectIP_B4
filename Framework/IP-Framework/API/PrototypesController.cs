@@ -13,7 +13,7 @@ namespace IP_Framework.API
         
         // POST: api/Prototype
         [HttpPost("example")]
-        public string Post([FromBody] Symptomes symptomeList)
+        public string Post([FromForm] Symptomes symptomeList)
         {
             var json = symptomeList.ToString();
             IContext context = new IContext(json);
@@ -28,7 +28,7 @@ namespace IP_Framework.API
 
         // PUT: api/Prototype/5
         [HttpPost("send-command")]
-        public string Post( [FromBody] Command command)
+        public string Post( [FromForm] Command command)
         {
             var json = command.ToString();
             EventHandler eventHandler = new EventHandler();
@@ -42,7 +42,7 @@ namespace IP_Framework.API
         }
 
         [HttpPost("get-question")]
-        public String Post([FromBody] int id) {
+        public String Post([FromForm] int id) {
             byte[] idBytes = BitConverter.GetBytes(id);
             EventHandlerContext eventHandlerContext = new EventHandlerContext(idBytes, idBytes.Length);
             eventHandlerContext.command = EventHandlerFunctions.RequestCommand;
@@ -50,7 +50,7 @@ namespace IP_Framework.API
             return "succes";
         }
         [HttpPost("send-response")]
-        public string Post([FromBody] Response response)
+        public string Post([FromForm] Response response)
         {
             var json = response.ToString();
             IContext context = new IContext(json);
@@ -64,7 +64,7 @@ namespace IP_Framework.API
         }
 
         [HttpPost("get-diagnosis")]
-        public String Post([FromBody] String imageUrl)
+        public String Post([FromForm] String imageUrl)
         {
             using (var webClient = new WebClient())
             {
