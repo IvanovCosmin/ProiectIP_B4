@@ -5,3 +5,15 @@ C:\Work\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework
 C:\Work\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csprojAssemblyReference.cache
 C:\Work\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfoInputs.cache
 C:\Work\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfo.cs
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csprojAssemblyReference.cache
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfoInputs.cache
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfo.cs
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.deps.json
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.runtimeconfig.json
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.runtimeconfig.dev.json
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.dll
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.genruntimeconfig.cache
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.pdb
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.dll
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.pdb
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csproj.CoreCompileInputs.cache

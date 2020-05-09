@@ -9,26 +9,16 @@ namespace IP_Framework
     {
         static void Main(string[] args)
         {
+            EventHandler newHandler = new EventHandler();
+            byte[] array = new byte[100];
+
+            EventHandlerContext context = new EventHandlerContext(array, 100);
             //InternalDbHandler.DBModule internalDB = Utils.Singleton<InternalDbHandler.DBModule>.Instance;            
             //internalDB.GetUserHandler().ShowData();
             //UserWrapper user = new UserWrapper("3");
             //internalDB.GetUserHandler().InsertUser(user);
-
-            using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(@"logs.txt", true))
-            {
-                file.WriteLine("scriu aici chestii");
-            }
-
+            Console.WriteLine(newHandler.InvokeCommand(context));
             CreateWebHostBuilder(args).Build().Run();
-
-            using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(@"logs.txt", true))
-            {
-                file.WriteLine("a pornit serverul");
-            }
-
-
         }
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)

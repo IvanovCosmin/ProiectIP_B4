@@ -8,6 +8,7 @@ namespace IP_Framework
     {
         public byte[] context;
         public int sizeOfContext;
+        public String json;
 
         public byte[] answer;
         public int sizeOfAnswer;
@@ -35,6 +36,11 @@ namespace IP_Framework
         public static implicit operator IContext(Dictionary<string, string> v)
         {
             throw new NotImplementedException();
+        }
+
+        public IContext(String json)
+        {
+            this.json = json;
         }
     }
 
