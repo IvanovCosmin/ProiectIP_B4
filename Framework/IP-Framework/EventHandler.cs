@@ -58,8 +58,11 @@ namespace IP_Framework
         {
             Console.WriteLine("InvokeCommand execution for subModule Handler");
 
+            /*
             if (ValidateContext(handlerContext) == false)
                 return false;
+            
+            */
             switch (handlerContext.command)
             {
                 case EventHandlerFunctions.Init:

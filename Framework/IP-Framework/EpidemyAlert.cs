@@ -5,6 +5,7 @@ using System.Net;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using IP_Framework.InternalDbHandler;
 
 namespace IP_Framework
 {
@@ -64,7 +65,10 @@ namespace IP_Framework
 
                     resultcontextHool = fatherHandler.InvokeCommand(commandContext);
 
-                    List<Point> points = context.points;
+                    DBModule instance = Utils.Singleton<DBModule>.Instance;
+                    UserHandler userHandler = instance.GetUserHandler();
+                    
+                    List <Point> points = userHandler.GetPoints();
 
                     List<List<Point>> finalResultList = new List<List<Point>>();
 
@@ -83,6 +87,16 @@ namespace IP_Framework
                     foreach (List<Point> list in ConvexHaul.CalculateHull(points, Country))
                     {
                         finalResultList.Add(list);
+                    }
+
+                    foreach (var list in finalResultList)
+                    {
+                        Console.WriteLine("Group: ");
+                        foreach (var point in list)
+                        {
+                            Console.WriteLine(point.x);
+                            Console.WriteLine(point.y);
+                        }
                     }
 
                     // CALL frontend care primeste List<List<Point>> si afiseaza valorile si x-y nostru

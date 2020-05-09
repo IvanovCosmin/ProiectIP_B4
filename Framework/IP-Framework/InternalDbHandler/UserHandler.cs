@@ -35,5 +35,30 @@ namespace IP_Framework.InternalDbHandler
             );
         }
 
+        public List<Point> GetPoints()
+        {
+            List<Point> points = new List<Point>();
+
+            var documents = collection.Find(new BsonDocument()).ToList();
+            foreach (BsonDocument doc in documents)
+            {
+                try
+                {
+                    double lon = (double)doc["lon"]*Math.PI/180.0;
+                    double lat = (double) doc["lat"]*Math.PI/180.0;
+
+                    Point p = new Point(lon, lat);
+                    points.Add(p);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+
+            return points;
+        }
+
     }
 }

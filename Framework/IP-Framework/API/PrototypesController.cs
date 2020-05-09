@@ -13,7 +13,7 @@ namespace IP_Framework.API
         
         // POST: api/Prototype
         [HttpPost("example")]
-        public string Post([FromForm] Symptomes symptomeList)
+        public string Post([FromBody] Symptomes symptomeList)
         {
             var json = symptomeList.ToString();
             IContext context = new IContext(json);
@@ -28,21 +28,26 @@ namespace IP_Framework.API
 
         // PUT: api/Prototype/5
         [HttpPost("send-command")]
-        public string Post( [FromForm] Command command)
+        public string Post( [FromBody] Command command)
         {
             var json = command.ToString();
             EventHandler eventHandler = new EventHandler();
             IContext context = new IContext(json);
             EventHandlerContext eventHandlerContext = new EventHandlerContext();
-            eventHandlerContext.contextHandler = context;
-            eventHandlerContext.command = EventHandlerFunctions.InvokeCommand;
-            eventHandlerContext.subModuleCommand = SubModuleFunctions.AskForFormResults;
-            eventHandler.InvokeCommand(eventHandlerContext);
+
+            if (command.command == "bullshit")
+            {
+                eventHandlerContext.contextHandler = context;
+                eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
+                eventHandlerContext.subModuleCommand = SubModuleFunctions.EpidemyCheckForAreas;
+                eventHandler.InvokeCommand(eventHandlerContext);
+            }
+
             return json;
         }
 
         [HttpPost("get-question")]
-        public String Post([FromForm] int id) {
+        public String Post([FromBody] int id) {
             byte[] idBytes = BitConverter.GetBytes(id);
             EventHandlerContext eventHandlerContext = new EventHandlerContext(idBytes, idBytes.Length);
             eventHandlerContext.command = EventHandlerFunctions.RequestCommand;
@@ -50,7 +55,7 @@ namespace IP_Framework.API
             return "succes";
         }
         [HttpPost("send-response")]
-        public string Post([FromForm] Response response)
+        public string Post([FromBody] Response response)
         {
             var json = response.ToString();
             IContext context = new IContext(json);
@@ -64,7 +69,7 @@ namespace IP_Framework.API
         }
 
         [HttpPost("get-diagnosis")]
-        public String Post([FromForm] String imageUrl)
+        public String Post([FromBody] String imageUrl)
         {
             using (var webClient = new WebClient())
             {

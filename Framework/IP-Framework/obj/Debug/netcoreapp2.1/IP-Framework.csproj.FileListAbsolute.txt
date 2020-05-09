@@ -1,0 +1,12 @@
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.deps.json
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.runtimeconfig.json
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.runtimeconfig.dev.json
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.dll
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.pdb
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csprojAssemblyReference.cache
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csproj.CoreCompileInputs.cache
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfoInputs.cache
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfo.cs
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.dll
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.pdb
+F:\Programming Projects\Software Inginerring\ALL\ProiectIP_B4-master\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.genruntimeconfig.cache

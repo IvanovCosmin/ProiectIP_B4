@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using IP_Framework.InternalDbHandler;
 
 namespace IP_Framework
 {
@@ -8,10 +9,19 @@ namespace IP_Framework
     {
 
         private static double EPSILON = 1e-8;
+        /*
+        x = long
+        y = lat;
+        */
+        
+
+        private static double R = 6376;
 
         private static double Distance(Point p1, Point p2)
         {
-            return Math.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+            return R * Math.Acos(Math.Sin(p1.y) * Math.Sin(p2.y) +
+                                 Math.Cos(p1.y) * Math.Cos(p2.y) * Math.Cos(p1.x - p2.x));
+            //return Math.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
         }
 
         private static List<List<Point>> DivideRegions(List<Point> points, double acceptedSize = 10)
