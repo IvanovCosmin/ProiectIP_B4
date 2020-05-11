@@ -1,4 +1,7 @@
-﻿using System;
+﻿using IP_Framework;
+using Microsoft.AspNetCore.Razor.Language.Extensions;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -11,6 +14,8 @@ namespace Quizzer
         private ISet<QuSignature> signatures;
         private Dictionary<string, HashSet<QuSignature>> symptomToSignatures;
         private ISet<string> chekckedSymtpoms;
+        private const double minValidPercentage = 0.5;
+        private const double minCorrectPercentage = 0.75;
         
         public SymptomsHolder(ISet<QuSignature> signatures)
         {
@@ -40,7 +45,7 @@ namespace Quizzer
             {
                 foreach(var symptom in signature.symptoms)
                 {
-                    Question question = new Question(symptom.Key, symptom.Value.GetQuestionType());
+                    Question question = new Question(symptom.Key, symptom.Value.questionString, symptom.Value.GetQuestionType());
                     if (!chekckedSymtpoms.Contains(symptom.Key))
                     {
                         chekckedSymtpoms.Add(symptom.Key);
@@ -57,6 +62,32 @@ namespace Quizzer
             return null;
         }
 
+        public int GetSignaturesCount()
+        {
+            return signatures.Count;
+        }
+
+        public string GetJsonVerdict()
+        {
+            JObject jObject = new JObject();
+            JArray jArray = new JArray();
+            jObject.Add("verdict", jArray);
+            List<QuSignature> verdicts = new List<QuSignature>();
+            foreach(QuSignature signature in signatures)
+            {
+                if(((double)signature.currentPositiveScore / (double)signature.initialScore) > minCorrectPercentage)
+                {
+                    verdicts.Add(signature);
+                }
+            }
+            foreach(QuSignature signature in verdicts)
+            {
+                jArray.Add(signature.name);
+            }
+            
+            return jObject.ToString();
+        }
+
         public void ProcessAnswer(Answer answer)
         {
             QuizzerStrategyContext strategyContext = new QuizzerStrategyContext();
@@ -69,7 +100,8 @@ namespace Quizzer
             {
                 if(!strategyContext.GetStrategy().ApplyAnswerToSignature(signature, correspondingSymptom, answer))
                 {
-                    if (((double)signature.currentScore / (double)signature.initialScore) < 0.5)
+                    double percentage = (double)signature.currentScore / (double)signature.initialScore;
+                    if (percentage < minValidPercentage)
                     {
                         removedSignatures.Add(signature);
                     }

@@ -1,17 +1,24 @@
 ﻿{
-  "temperatura": {
-    "tip": "interval",
-    "min": 37.5,
-    "importanta": 10
-  },
-  "bube rosii pe corp": {
-    "tip": "existenta",
-    "valoare": true,
-    "importanta": 50
-  },
-  "pierdere a poftei de mancare": {
-    "tip": "existenta",
-    "valoare": true,
-    "importanta": 10
-  }
+  "name": "varicela",
+  "symptoms": {
+    "temperatura": {
+      "tip": "interval",
+      "min": 37.5,
+      "importanta": 10,
+      "questionString": "Te rugam sa introduci temperatura corpului tau:"
+    },
+    "bube rosii pe corp": {
+      "tip": "existenta",
+      "valoare": true,
+      "importanta": 50,
+      "questionString": "Observi prezenta unor bube rosii pe corp?"
+    },
+    "pierdere a poftei de mancare": {
+      "tip": "existenta",
+      "valoare": true,
+      "importanta": 10,
+      "questionString": "Ai simtit in ultima vreme o pierdere a poftei de mancare?"
+    }
+  } 
+  
 }

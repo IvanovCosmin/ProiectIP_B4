@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver.Core.Events;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,6 +14,14 @@ namespace Quizzer
             quizes = new Dictionary<long, Quiz>();
         }
 
+        public void RemoveById(long id)
+        {
+            if (quizes.ContainsKey(id))
+            {
+                quizes.Remove(id);
+            }
+        }
+
         public Question GetQuestion(long id)
         {
             if (quizes.ContainsKey(id))
@@ -23,9 +32,9 @@ namespace Quizzer
             {
                 QuSymptomsParser symptomsParser = new QuSymptomsParser();
 
-                symptomsParser.FeedSignatures("D:\\diseases");
+                symptomsParser.FeedSignatures("D:\\Facultate\\ProiectIP_B4\\Framework\\IP-Framework\\SickQuizzer\\diseases");
 
-                ISet<QuSignature> signatures = symptomsParser.GetSignatures();
+                ISet <QuSignature> signatures = symptomsParser.GetSignatures();
 
                 SymptomsHolder symptomsHolder = new SymptomsHolder(signatures);
 
@@ -36,6 +45,12 @@ namespace Quizzer
 
                 return quiz.GetNextQuestion();
             }
+        }
+
+
+        public Quiz GetQuizById(int id)
+        {
+            return quizes[id];
         }
 
         public bool ProcessAnswer(long id, Answer answer)

@@ -1,17 +1,24 @@
 ﻿{
-  "durere la nivelul ochilor": {
-    "tip": "existents",
-    "valoare": true,
-    "importanta": 20
-  },
-  "roseata in ochi": {
-    "tip": "existenta",
-    "valoare": true,
-    "importanta": 50
-  },
-  "lacrimare intensa a ochilor": {
-    "tip": "existenta",
-    "valoare": true,
-    "importanta": 50
+  "name": "conjunctivita",
+  "symptoms": {
+    "durere la nivelul ochilor": {
+      "tip": "existenta",
+      "valoare": true,
+      "importanta": 20,
+      "questionString": "Simti durere la nivelul ochilor?"
+    },
+    "roseata in ochi": {
+      "tip": "existenta",
+      "valoare": true,
+      "importanta": 50,
+      "questionString": "Ai roseata in ochi prezenta?"
+    },
+    "lacrimare intensa a ochilor": {
+      "tip": "existenta",
+      "valoare": true,
+      "importanta": 50,
+      "questionString": "Ai experimentat recent o lacrimare intensa a ochilor?"
+    }
   }
+  
 }

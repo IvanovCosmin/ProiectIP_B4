@@ -1,0 +1,12 @@
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.deps.json
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.runtimeconfig.json
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.runtimeconfig.dev.json
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.dll
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.pdb
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csprojAssemblyReference.cache
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csproj.CoreCompileInputs.cache
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfoInputs.cache
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfo.cs
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.dll
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.pdb
+D:\Facultate\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.genruntimeconfig.cache

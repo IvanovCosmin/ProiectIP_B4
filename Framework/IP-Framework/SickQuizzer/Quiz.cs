@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 
 namespace Quizzer
@@ -22,7 +23,19 @@ namespace Quizzer
         private ISet<int> askedQuestions;
         private SymptomsHolder symptomsHolder;
         private Answer.QUESTION_TYPE currentQuestionType;
+        private string currentSymptomType;
+        private const int maxQuestionCount = 7;
+        private const int finalSignatureCount = 3;
 
+        public Answer.QUESTION_TYPE GetCurrentQuestionType()
+        {
+            return currentQuestionType;
+        }
+
+        public string GetCurrentSymptom()
+        {
+            return currentSymptomType;
+        }
         public Quiz(SymptomsHolder symptomsHolder)
         {
             quizState = QUIZ_STATE.INIT;
@@ -43,15 +56,26 @@ namespace Quizzer
             return true;
         }
 
+        public SymptomsHolder GetSymptomsHolder()
+        {
+            return symptomsHolder;
+        }
+
         public Question GetNextQuestion()
         {
             if (quizState != QUIZ_STATE.ANSWERED)
             {
                 return null;
             }
+            if (askedQuestions.Count >= maxQuestionCount || symptomsHolder.GetSignaturesCount() <= finalSignatureCount)
+            {
+                quizState = QUIZ_STATE.FINISHED;
+                return null;
+            }
             quizState = QUIZ_STATE.ANSWERING;
             Question nextQuestion = symptomsHolder.GetNextQuestion();
             currentQuestionType = nextQuestion.GetQuestionType();
+            currentSymptomType = nextQuestion.GetCorrespondingSymptom();
             return nextQuestion;
         }
 
@@ -71,7 +95,6 @@ namespace Quizzer
             answers.Add(answer);
             currentQuestionNumber++;
             quizState = QUIZ_STATE.ANSWERED;
-
             return true;
         }
 

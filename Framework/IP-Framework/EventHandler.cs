@@ -41,6 +41,13 @@ namespace IP_Framework
         // all modules should pe private, we need to encapsulate as much as possible
         // only this instances should have access to the data in the handler
 
+        private static EventHandler instance = new EventHandler();
+
+        public static EventHandler GetInstance()
+        {
+            return instance;
+        }
+
         public EventHandler() // this module should get an DB instance for the dataBaseHandler
         {
             Init(null, 0);
@@ -58,8 +65,8 @@ namespace IP_Framework
         {
             Console.WriteLine("InvokeCommand execution for subModule Handler");
 
-            if (ValidateContext(handlerContext) == false)
-                return false;
+            /*if (ValidateContext(handlerContext) == false)
+                return false;*/
             switch (handlerContext.command)
             {
                 case EventHandlerFunctions.Init:
@@ -169,6 +176,8 @@ namespace IP_Framework
         AskForFormResults,
         SaveFormResults,
         StartForm,
+        GetQuestion,
+        SendResponse,
 
         ImageAddPhoto = 201,
         ImageComparePhoto,

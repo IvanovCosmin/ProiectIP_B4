@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace IP_Framework.API
 {
@@ -9,7 +10,6 @@ namespace IP_Framework.API
     [ApiController]
     public class PrototypesController : ControllerBase
     {
-      
         
         // POST: api/Prototype
         [HttpPost("example")]
@@ -42,24 +42,32 @@ namespace IP_Framework.API
         }
 
         [HttpPost("get-question")]
-        public String Post([FromForm] int id) {
+        public String Post([FromBody] JObject data) {
+            int id = data["id"].ToObject<int>();
             byte[] idBytes = BitConverter.GetBytes(id);
+            IContext context = new SymptomContext(id, 0);
             EventHandlerContext eventHandlerContext = new EventHandlerContext(idBytes, idBytes.Length);
-            eventHandlerContext.command = EventHandlerFunctions.RequestCommand;
-            eventHandlerContext.subModuleCommand = SubModuleFunctions.MachineLearningAsk;
-            return "succes";
+            eventHandlerContext.command = EventHandlerFunctions.SymptomBasedDetectionModule;
+            eventHandlerContext.subModuleCommand = SubModuleFunctions.GetQuestion;
+            eventHandlerContext.contextHandler = context;
+            EventHandler eventHandler = EventHandler.GetInstance();
+            eventHandler.InvokeCommand(eventHandlerContext);
+            return (context as SymptomContext).response;
         }
         [HttpPost("send-response")]
-        public string Post([FromForm] Response response)
+        public string PostResponse([FromBody] JObject data)
         {
-            var json = response.ToString();
-            IContext context = new IContext(json);
-            EventHandlerContext eventHandlerContext = new EventHandlerContext();
+            int id = data["id"].ToObject<int>();
+            float status = data["status"].ToObject<float>();
+            byte[] idBytes = BitConverter.GetBytes(id);
+            IContext context = new SymptomContext(id, status);
+            EventHandlerContext eventHandlerContext = new EventHandlerContext(idBytes, idBytes.Length);
+            eventHandlerContext.command = EventHandlerFunctions.SymptomBasedDetectionModule;
+            eventHandlerContext.subModuleCommand = SubModuleFunctions.SendResponse;
             eventHandlerContext.contextHandler = context;
-            eventHandlerContext.command = EventHandlerFunctions.InvokeCommand;
-            eventHandlerContext.subModuleCommand = SubModuleFunctions.MachineLearningGetResults;
-            EventHandler eventHandler = new EventHandler();
+            EventHandler eventHandler = EventHandler.GetInstance();
             eventHandler.InvokeCommand(eventHandlerContext);
+            return (context as SymptomContext).response;
             return "succes";
         }
 

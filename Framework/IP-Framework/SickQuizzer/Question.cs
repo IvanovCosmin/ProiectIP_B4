@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +9,6 @@ namespace Quizzer
     {
         private string questionText;
         private string correspondingSymptom;
-        private int questionID;
         private Answer.QUESTION_TYPE questionType;
 
         public string GetCorrespondingSymptom()
@@ -31,14 +31,34 @@ namespace Quizzer
             this.questionText = questionText;
         }
 
-        public Question(string symptomName,  Answer.QUESTION_TYPE questionType)
+        public Question(string symptomName, string questionText,  Answer.QUESTION_TYPE questionType)
         {
             QuizzerStrategyContext quizzerStrategyContext = new QuizzerStrategyContext();
             quizzerStrategyContext.SetContext(questionType);
 
-            questionText = quizzerStrategyContext.GetStrategy().GetQuestionString(symptomName);
+            this.questionText = questionText;
             this.questionType = questionType;
             this.correspondingSymptom = symptomName;
+        }
+        public string ToJson(int id)
+        {
+            dynamic jsonObject = new JObject();
+            jsonObject.id = id;
+            jsonObject.question = questionText;
+            switch (questionType)
+            {
+                case Answer.QUESTION_TYPE.QUESTION_NUMBER:
+                    jsonObject.tip = "interval";
+                    break;
+                case Answer.QUESTION_TYPE.QUESTION_SICKNESS_LEVEL:
+                    jsonObject.tip = "nivel_durere";
+                    break;
+                case Answer.QUESTION_TYPE.QUESTION_BOOLEAN:
+                    jsonObject.tip = "existenta";
+                    break;
+            }
+
+            return jsonObject.ToString();
         }
     }
 }

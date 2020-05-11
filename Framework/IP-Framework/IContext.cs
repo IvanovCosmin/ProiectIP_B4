@@ -63,6 +63,18 @@ namespace IP_Framework
     {
         // to be discussed and implemented
     }
+    class SymptomContext : IContext
+    {
+        public int id;
+        public float status;
+        public String response;
+
+        public SymptomContext(int id, float status)
+        {
+            this.id = id;
+            this.status = status;
+        }
+    }
 
     class FormContext : IContext
     {
