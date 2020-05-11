@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace IP_Framework
 {
     class ConvexHaul
     {
-
         private static double EPSILON = 1e-8;
 
-        private static double Distance(Point p1, Point p2)
+        private static double R = 6376;
+
+        public static double Distance(Point p1, Point p2)
         {
-            return Math.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+            return R * Math.Acos(Math.Sin(p1.y) * Math.Sin(p2.y) +
+                                 Math.Cos(p1.y) * Math.Cos(p2.y) * Math.Cos(p1.x - p2.x));
+            //return Math.Sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
         }
 
         private static List<List<Point>> DivideRegions(List<Point> points, double acceptedSize = 10)
@@ -129,13 +131,19 @@ namespace IP_Framework
                 (A, B) => (Compare(A, B, leftBottom))
             );
 
-            List<Point> hull = new List<Point>(region.Capacity);
+            List<Point> hull = new List<Point>();
+
+            for (int counter = 0; counter < region.Count; counter++)
+            {
+                hull.Add(new Point(0, 0));
+            }
+
             hull[0] = leftBottom;
             hull[1] = sortedRegion[0];
             int top = 1;
-            for (int i = 1; i < sortedRegion.Capacity; i++)
+            for (int i = 1; i < sortedRegion.Count; i++)
             {
-                while (Compare(hull[top - 1], hull[top], sortedRegion[i]) < 1)
+                while (top >= 1 && Compare(hull[top - 1], hull[top], sortedRegion[i]) < 1)
                 {
                     top--;
                 }
@@ -164,6 +172,5 @@ namespace IP_Framework
 
             return hulls;
         }
-
     }
 }

@@ -1,12 +1,4 @@
-﻿using System;
-using Microsoft.VisualBasic.CompilerServices;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-
-namespace IP_Framework
+﻿namespace IP_Framework
 {
     class Point
     {
