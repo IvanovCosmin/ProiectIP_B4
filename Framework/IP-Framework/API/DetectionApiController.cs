@@ -65,7 +65,6 @@ namespace IP_Framework.API
             EventHandler eventHandler = EventHandler.GetInstance();
             eventHandler.InvokeCommand(eventHandlerContext);
             return (context as SymptomContext).response;
-            return "succes";
         }
 
         [HttpPost("get-diagnosis")]
