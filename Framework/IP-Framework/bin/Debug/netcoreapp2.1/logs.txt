@@ -2,6 +2,7 @@ am inceput sa configurez serverul
 am configurat serverul
 am inceput sa configurez serverul
 am configurat serverul
+<<<<<<< HEAD
 am inceput sa configurez serverul
 am configurat serverul
 am inceput sa configurez serverul
@@ -100,3 +101,5 @@ am inceput sa configurez serverul
 am configurat serverul
 am inceput sa configurez serverul
 am configurat serverul
+=======
+>>>>>>> 34b2479236bb684c6041250d1c1aff1d1a40ff0e

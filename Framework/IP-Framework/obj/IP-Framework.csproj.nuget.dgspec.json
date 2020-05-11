@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "D:\\Facultate\\ProiectIP_B4\\Framework\\IP-Framework\\IP-Framework.csproj": {}
   },
   "projects": {
@@ -15,6 +16,25 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fanghel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "C:\\Users\\Emanuel\\Documents\\GitHub\\ProiectIP_B4\\Framework\\IP-Framework\\IP-Framework.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Emanuel\\Documents\\GitHub\\ProiectIP_B4\\Framework\\IP-Framework\\IP-Framework.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Emanuel\\Documents\\GitHub\\ProiectIP_B4\\Framework\\IP-Framework\\IP-Framework.csproj",
+        "projectName": "IP-Framework",
+        "projectPath": "C:\\Users\\Emanuel\\Documents\\GitHub\\ProiectIP_B4\\Framework\\IP-Framework\\IP-Framework.csproj",
+        "packagesPath": "C:\\Users\\Emanuel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Emanuel\\Documents\\GitHub\\ProiectIP_B4\\Framework\\IP-Framework\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Emanuel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 34b2479236bb684c6041250d1c1aff1d1a40ff0e
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
