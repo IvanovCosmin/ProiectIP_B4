@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IP_Framework.API
 {
-    [Route("api/prototypes")]
+    [Route("api/v1/detectionapi")]
     [ApiController]
-    public class PrototypesController : ControllerBase
+    public class DetectionApiController : ControllerBase
     {
-      
         
-        // POST: api/Prototype
         [HttpPost("example")]
         public string Post([FromForm] Symptomes symptomeList)
         {
@@ -26,7 +23,6 @@ namespace IP_Framework.API
             return "succes";
         }
 
-        // PUT: api/Prototype/5
         [HttpPost("send-command")]
         public string Post( [FromForm] Command command)
         {
