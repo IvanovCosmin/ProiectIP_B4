@@ -26,21 +26,6 @@ namespace IP_Framework
             SymptomContext symptomContext = contextHandler as SymptomContext;
             switch (command)
             {
-                case SubModuleFunctions.CreateForm:
-                    // create form function
-                    return true;
-                case SubModuleFunctions.AskForFormResults:
-                    // return formular result in a context
-                    return true;
-                case SubModuleFunctions.SaveFormResults:
-                    // save form to DB
-                    return true;
-                case SubModuleFunctions.StartForm:
-                    // form start
-                    EventHandlerContext newContext = new EventHandlerContext(contextHandler.context, contextHandler.sizeOfContext);
-                    newContext.command = EventHandlerFunctions.EpidemyAlertModule;
-                    newContext.subModuleCommand = SubModuleFunctions.EpidemyCheckForSpecificAlert;
-                    return fatherHandler.InvokeCommand(newContext);
                 case SubModuleFunctions.GetQuestion:
                     question = quizHandler.GetQuestion(symptomContext.id);
                     symptomContext.response = question.ToJson(symptomContext.id);
