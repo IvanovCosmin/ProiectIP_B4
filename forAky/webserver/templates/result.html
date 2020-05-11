@@ -1,0 +1,16 @@
+$def with(total, blanks, pozitives, percent, datafile)
+
+<!DOCTYPE html>
+<head>
+    <title>Results</title>
+</head>
+<body>
+    <h1>Here are your results:</h1>
+
+    <div>
+        <p>blanks: $blanks/$total</p>
+        <p>pozitives: $pozitives/$(total - blanks) = $percent%</p>
+    </div>
+
+    <img src="/static/$datafile" alt="a picture with your results" style="width: 1000px; height: auto;"/>
+</body>
