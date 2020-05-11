@@ -26,7 +26,7 @@ namespace IP_Framework
             fatherHandler = father;
         }
 
-        public bool CreateConvexHauls(List<Point> points)
+        public String CreateConvexHauls(List<Point> points)
         {
 
             List<List<Point>> finalResultList = new List<List<Point>>();
@@ -66,10 +66,10 @@ namespace IP_Framework
 
             Console.WriteLine(JSON);
 
-            return true;
+            return JSON;
         }
 
-        public bool CheckIfPointsCauseAlert(List<Point> points, Point user)
+        public String CheckIfPointsCauseAlert(List<Point> points, Point user)
         {
             String JSON = "{areas : [";
 
@@ -123,10 +123,10 @@ namespace IP_Framework
             }
             else
             {
-                JSON = JSON + "{\"Country\" : 1}]}";
+                JSON = JSON + "{\"Country\" : 0}]}";
             }
 
-            return false;
+            return JSON;
         }
 
         public override bool InvokeCommand(SubModuleFunctions command, IContext contextHandler)
@@ -145,20 +145,20 @@ namespace IP_Framework
                 case SubModuleFunctions.EpidemyCheckForAreas:
 
                     points = userHandler.GetPoints();
-                    CreateConvexHauls(points);
+                    subModuleContextHandler.json = CreateConvexHauls(points);
                     return true;
 
                 case SubModuleFunctions.EpidemyCheckForSpecificAlert:
 
                     points = userHandler.GetPointsForDisease(subModuleContextHandler.specificSearch);
-                    CreateConvexHauls(points);
+                    subModuleContextHandler.json = CreateConvexHauls(points);
                     return true;
 
                 case SubModuleFunctions.EpidemyCheckForAlert:
 
                     points = userHandler.GetPointsForDisease(subModuleContextHandler.specificSearch);
                     Point user = new Point();
-                    CheckIfPointsCauseAlert(points, user);
+                    subModuleContextHandler.json = CheckIfPointsCauseAlert(points, user);
                     return true;
 
                 default:

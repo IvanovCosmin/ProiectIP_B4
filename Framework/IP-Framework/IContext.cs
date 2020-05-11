@@ -57,6 +57,16 @@ namespace IP_Framework
         public string specificSearch;
 
         public Dictionary<string, string> AnswerDictionary;
+
+        public EpidemyContext(String json)
+        {
+            this.json = json;
+        }
+        public EpidemyContext()
+        {
+
+        }
+
     }
 
     class SymptomLearningContext : IContext
