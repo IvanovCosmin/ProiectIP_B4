@@ -24,18 +24,18 @@ namespace IP_Framework.API
             return "succes";
         }
 
-        [HttpPost("send-command")]
-        public string Post( [FromForm] Command command)
+        [HttpPost("check-epidemic-haul")]
+        public string Post( [FromBody] Command command)
         {
             var json = command.ToString();
             EventHandler eventHandler = new EventHandler();
-            IContext context = new IContext(json);
+            IContext context = new EpidemyContext(json);
             EventHandlerContext eventHandlerContext = new EventHandlerContext();
             eventHandlerContext.contextHandler = context;
-            eventHandlerContext.command = EventHandlerFunctions.InvokeCommand;
-            eventHandlerContext.subModuleCommand = SubModuleFunctions.AskForFormResults;
+            eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
+            eventHandlerContext.subModuleCommand = SubModuleFunctions.EpidemyCheckForAreas;
             eventHandler.InvokeCommand(eventHandlerContext);
-            return json;
+            return context.json;
         }
 
         [HttpPost("get-question")]
@@ -65,25 +65,21 @@ namespace IP_Framework.API
             EventHandler eventHandler = EventHandler.GetInstance();
             eventHandler.InvokeCommand(eventHandlerContext);
             return (context as SymptomContext).response;
+            return "succes";
         }
 
-        [HttpPost("get-diagnosis")]
-        public String Post([FromForm] String imageUrl)
+        [HttpPost("check-epidemic")]
+        public String Post([FromBody] String disease)
         {
-            using (var webClient = new WebClient())
-            {
-               byte[] imageBytes = webClient.DownloadData(imageUrl);
-                EventHandler eventHandler = new EventHandler();
-                EventHandlerContext eventHandlerContext = new EventHandlerContext(imageBytes, imageBytes.Length)
-                {
-                    command = EventHandlerFunctions.ImageProcessingModule,
-                    subModuleCommand = SubModuleFunctions.ImageComparePhoto
-            };
-                
-                eventHandler.InvokeCommand(eventHandlerContext);
-            }
-           
-            return "succes";
+            EventHandler eventHandler = new EventHandler();
+            EpidemyContext context = new EpidemyContext();
+            context.specificSearch = disease;
+            EventHandlerContext eventHandlerContext = new EventHandlerContext();
+            eventHandlerContext.contextHandler = context;
+            eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
+            eventHandlerContext.subModuleCommand = SubModuleFunctions.EpidemyCheckForAlert;
+            eventHandler.InvokeCommand(eventHandlerContext);
+            return context.json;
         }
 
     }
