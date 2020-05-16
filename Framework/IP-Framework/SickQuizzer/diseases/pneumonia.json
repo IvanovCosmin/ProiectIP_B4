@@ -21,7 +21,7 @@
     },
     "durere in piept": {
       "tip": "nivel_durere",
-      "min": "mediu",
+      "min_pain": "mediu",
       "importanta": 30,
       "questionString": "Simti durere in piept?"
     },
