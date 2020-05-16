@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
+using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
@@ -51,6 +53,19 @@ namespace IP_Framework.API
             eventHandler.InvokeCommand(eventHandlerContext);
             return (context as SymptomContext).response;
         }
+
+        [HttpOptions("get-question")]
+        public void QuestionOptions()
+        {
+            return; 
+        }
+
+        [HttpOptions("send-response")]
+        public void ResponseOptions()
+        {
+            return;
+        }
+
         [HttpPost("send-response")]
         public string PostResponse([FromBody] JObject data)
         {
@@ -81,6 +96,7 @@ namespace IP_Framework.API
             eventHandler.InvokeCommand(eventHandlerContext);
             return context.json;
         }
+
 
     }
 }
