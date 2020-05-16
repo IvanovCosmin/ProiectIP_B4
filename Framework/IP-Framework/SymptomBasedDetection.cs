@@ -31,7 +31,7 @@ namespace IP_Framework
                     if (question == null)
                     {
                         symptomContext.response = "invalid";
-                        return false;
+                        return true;
                     }
                     symptomContext.response = question.ToJson(symptomContext.id);
                     return true;
