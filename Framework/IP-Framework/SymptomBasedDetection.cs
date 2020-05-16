@@ -28,6 +28,11 @@ namespace IP_Framework
             {
                 case SubModuleFunctions.GetQuestion:
                     question = quizHandler.GetQuestion(symptomContext.id);
+                    if (question == null)
+                    {
+                        symptomContext.response = "invalid";
+                        return false;
+                    }
                     symptomContext.response = question.ToJson(symptomContext.id);
                     return true;
                 case SubModuleFunctions.SendResponse:
