@@ -54,6 +54,7 @@ namespace IP_Framework.API
         [HttpPost("send-response")]
         public string PostResponse([FromBody] JObject data)
         {
+            //TODO: de scos cod redundant
             int id = data["id"].ToObject<int>();
             float status = data["status"].ToObject<float>();
             byte[] idBytes = BitConverter.GetBytes(id);
@@ -65,7 +66,6 @@ namespace IP_Framework.API
             EventHandler eventHandler = EventHandler.GetInstance();
             eventHandler.InvokeCommand(eventHandlerContext);
             return (context as SymptomContext).response;
-            return "succes";
         }
 
         [HttpPost("check-epidemic")]

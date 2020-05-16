@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -23,8 +25,13 @@ namespace Quizzer
         public string tip;
         public string questionString;
         public int importanta;
-        public float min;
-        public float max;
+        public string min_pain;
+        public string max_pain;
+
+        [BsonRepresentation(BsonType.Double, AllowTruncation = true)]
+        public double min;
+        [BsonRepresentation(BsonType.Double, AllowTruncation = true)]
+        public double max;
         public bool valoare;
 
         public Answer.QUESTION_TYPE GetQuestionType()
@@ -42,6 +49,49 @@ namespace Quizzer
                 return Answer.QUESTION_TYPE.QUESTION_SICKNESS_LEVEL;
             }
             return Answer.QUESTION_TYPE.QUESTION_BOOLEAN;
+        }
+
+        public void SetPainLevel()
+        {
+            if(min_pain == null)
+            {
+                return;
+            }
+            switch (min_pain)
+            {
+                case "deloc":
+                    min_durere = Answer.QUESTION_SICKNESS_LEVEL.ABSENT;
+                    break;
+                case "mic":
+                    min_durere = Answer.QUESTION_SICKNESS_LEVEL.LITTLE;
+                    break;
+
+                case "mediu":
+                    min_durere = Answer.QUESTION_SICKNESS_LEVEL.MEDIUM;
+                    break;
+                case "mare":
+                    min_durere = Answer.QUESTION_SICKNESS_LEVEL.HIGH;
+                    break;
+            }
+            if (max_pain == null)
+            {
+                return;
+            }
+            switch (max_pain)
+            {
+                case "deloc":
+                    max_durere = Answer.QUESTION_SICKNESS_LEVEL.ABSENT;
+                    break;
+                case "mic":
+                    max_durere = Answer.QUESTION_SICKNESS_LEVEL.LITTLE;
+                    break;
+                case "mediu":
+                    max_durere = Answer.QUESTION_SICKNESS_LEVEL.MEDIUM;
+                    break;
+                case "mare":
+                    max_durere = Answer.QUESTION_SICKNESS_LEVEL.HIGH;
+                    break;
+            }
         }
     };
 }

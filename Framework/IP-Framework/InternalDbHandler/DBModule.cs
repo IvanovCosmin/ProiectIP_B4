@@ -7,10 +7,12 @@ namespace IP_Framework.InternalDbHandler
     class DBModule
     {
         private static UserHandler userHandler;
-        
+        private static QuizSigsHandler sigsHandler;
+
         public DBModule()
         {
             userHandler = new UserHandler(Utils.Singleton<DBInstance>.Instance);
+            sigsHandler = new QuizSigsHandler(Utils.Singleton<DBInstance>.Instance);
         }
 
         public UserHandler GetUserHandler()
@@ -18,5 +20,9 @@ namespace IP_Framework.InternalDbHandler
             return userHandler;
         }
 
+        public QuizSigsHandler GetSigsHandler()
+        {
+            return sigsHandler;
+        }
     }
 }

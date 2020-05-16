@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,8 +14,10 @@ namespace Quizzer
         public int initialScore;
         public int currentScore;
         public int currentPositiveScore;
-        public int id;
-
+        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string ID { get; set; }
+        
         public QuSignature()
         {
             initialScore = 0;

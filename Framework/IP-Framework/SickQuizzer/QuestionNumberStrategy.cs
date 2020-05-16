@@ -8,9 +8,9 @@ namespace Quizzer
     {
         public bool ApplyAnswerToSignature(QuSignature signature, string symptomName, Answer answer)
         {
-            float minRequiredAnswer = signature.symptoms[symptomName].min;
-            float maxRequiredAnswer = signature.symptoms[symptomName].max;
-            float answerValue = answer.GetAnswerNumeric();
+            double minRequiredAnswer = signature.symptoms[symptomName].min;
+            double maxRequiredAnswer = signature.symptoms[symptomName].max;
+            double answerValue = answer.GetAnswerNumeric();
             if (answerValue >= minRequiredAnswer && answerValue <= maxRequiredAnswer)
             {
                 signature.currentPositiveScore += signature.symptoms[symptomName].importanta;

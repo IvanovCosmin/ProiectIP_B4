@@ -7,6 +7,9 @@ using System.IO;
 using System.Threading.Tasks.Sources;
 using Newtonsoft.Json;
 using Quizzer;
+using IP_Framework.InternalDbHandler;
+
+using IP_Framework.Utils;
 
 namespace Quizzer
 {
@@ -72,30 +75,12 @@ namespace Quizzer
             // Console.WriteLine(symptoms["glicemie"].tip);
         }
 
-        public void FeedSignatures(string path)
+        public void FeedSignatures()
         {
-            FileAttributes fileAttributes = File.GetAttributes(path);
-            if (fileAttributes.HasFlag(FileAttributes.Directory))
-            {
-                string[] filePaths = Directory.GetFiles(path, "*");
+            DBModule instance = Singleton<DBModule>.Instance;
+            QuizSigsHandler sigsHandler = instance.GetSigsHandler();
 
-                foreach (string filePath in filePaths)
-                {
-                    using (StreamReader sr = new StreamReader(filePath))
-                    {
-                        string file = sr.ReadToEnd();
-                        ParseJson(file);
-                    }
-                }
-            }
-            else
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string file = sr.ReadToEnd();
-                    ParseJson(file);
-                }
-            }
+            signatures = sigsHandler.GetSignatures();
         }
     }
 }

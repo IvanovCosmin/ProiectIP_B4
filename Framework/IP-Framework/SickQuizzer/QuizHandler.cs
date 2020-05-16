@@ -32,7 +32,7 @@ namespace Quizzer
             {
                 QuSymptomsParser symptomsParser = new QuSymptomsParser();
 
-                symptomsParser.FeedSignatures("D:\\Facultate\\ProiectIP_B4\\Framework\\IP-Framework\\SickQuizzer\\diseases");
+                symptomsParser.FeedSignatures();
 
                 ISet <QuSignature> signatures = symptomsParser.GetSignatures();
 

@@ -9,6 +9,6 @@ namespace IP_Framework.InternalDbHandler
         public static string CONNECTION_STRING = "mongodb+srv://cosmin:12345666@ip0-s3dwl.mongodb.net/test?retryWrites=true&w=majority";
         public static string DB_NAME = "cancer";
         public static string COLLECTION_USERS_NAME = "users";
-
+        public static string COLLECTION_QUIZSIGS = "quizsigs";
     }
 }
