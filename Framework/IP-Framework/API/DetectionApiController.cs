@@ -24,11 +24,18 @@ namespace IP_Framework.API
         }
 
         [HttpPost("check-epidemic-haul")]
-        public string Post( [FromBody] Command command)
+        public string PostHaul( [FromBody] JObject data)
         {
-            var json = command.ToString();
             EventHandler eventHandler = new EventHandler();
-            IContext context = new EpidemyContext(json);
+            EpidemyContext context = new EpidemyContext();
+            if (data.ContainsKey("disease"))
+            {
+                context.specificSearch = data["disease"].ToObject<String>();
+            }
+            else
+            {
+                context.specificSearch = null;
+            }
             EventHandlerContext eventHandlerContext = new EventHandlerContext();
             eventHandlerContext.contextHandler = context;
             eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
@@ -38,7 +45,7 @@ namespace IP_Framework.API
         }
 
         [HttpPost("get-question")]
-        public string Post([FromBody] JObject data) {
+        public String Post([FromBody] JObject data) {
             int id = data["id"].ToObject<int>();
             byte[] idBytes = BitConverter.GetBytes(id);
             IContext context = new SymptomContext(id, 0);
@@ -48,37 +55,8 @@ namespace IP_Framework.API
             eventHandlerContext.contextHandler = context;
             EventHandler eventHandler = EventHandler.GetInstance();
             eventHandler.InvokeCommand(eventHandlerContext);
-
-            var response = HttpContext.Response;
-
-            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
-            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return (context as SymptomContext).response;
         }
-
-        [HttpOptions("get-question")]
-        public void QuestionOptions()
-        {
-            var response = HttpContext.Response;
-
-            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
-            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
-            return; 
-        }
-
-        [HttpOptions("send-response")]
-        public void ResponseOptions()
-        {
-            var response = HttpContext.Response;
-
-            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
-            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
-            return;
-        }
-
         [HttpPost("send-response")]
         public string PostResponse([FromBody] JObject data)
         {
@@ -93,20 +71,15 @@ namespace IP_Framework.API
             eventHandlerContext.contextHandler = context;
             EventHandler eventHandler = EventHandler.GetInstance();
             eventHandler.InvokeCommand(eventHandlerContext);
-            var response = HttpContext.Response;
-
-            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
-            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return (context as SymptomContext).response;
         }
 
         [HttpPost("check-epidemic")]
-        public String Post([FromBody] String disease)
+        public String GetEpidemic([FromBody] JObject data)
         {
             EventHandler eventHandler = new EventHandler();
             EpidemyContext context = new EpidemyContext();
-            context.specificSearch = disease;
+            context.specificSearch = data["disease"].ToObject<String>();
             EventHandlerContext eventHandlerContext = new EventHandlerContext();
             eventHandlerContext.contextHandler = context;
             eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
@@ -115,6 +88,20 @@ namespace IP_Framework.API
             return context.json;
         }
 
+        [HttpGet("get-notifications")]
+        public string GetNotifs([FromBody] JObject data)
+        {
+            EventHandler eventHandler = new EventHandler();
+            EpidemyContext context = new EpidemyContext();
+            context.specificSearch = data["id"].ToObject<String>();
+            EventHandlerContext eventHandlerContext = new EventHandlerContext();
+            eventHandlerContext.contextHandler = context;
+            eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
+            eventHandlerContext.subModuleCommand = SubModuleFunctions.GetAllNotifications;
+            eventHandler.InvokeCommand(eventHandlerContext);
+            return context.json;
+
+        }
 
     }
 }
