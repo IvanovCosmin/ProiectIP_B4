@@ -172,9 +172,6 @@ namespace IP_Framework
                 case SubModuleFunctions.GetAllNotifications:
 
                     BsonArray notifs = notifHandler.GetAllNotifs(subModuleContextHandler.specificSearch);
-                    BsonDocument returnJSON = new BsonDocument();
-                    returnJSON["id_user"] = subModuleContextHandler.specificSearch;
-                    returnJSON["notifications"] = notifs;
 
                     subModuleContextHandler.json = notifs.ToString();
 
