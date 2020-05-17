@@ -137,7 +137,7 @@ namespace IP_Framework.API
             return context.json;
         }
 
-        [HttpGet("get-notifications")]
+        [HttpPost("get-notifications")]
         public string GetNotifs([FromBody] JObject data)
         {
             EventHandler eventHandler = new EventHandler();
