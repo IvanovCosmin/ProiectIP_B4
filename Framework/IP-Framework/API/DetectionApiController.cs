@@ -45,7 +45,7 @@ namespace IP_Framework.API
         }
 
         [HttpPost("get-question")]
-        public String Post([FromBody] JObject data) {
+        public string Post([FromBody] JObject data) {
             int id = data["id"].ToObject<int>();
             byte[] idBytes = BitConverter.GetBytes(id);
             IContext context = new SymptomContext(id, 0);
@@ -55,8 +55,37 @@ namespace IP_Framework.API
             eventHandlerContext.contextHandler = context;
             EventHandler eventHandler = EventHandler.GetInstance();
             eventHandler.InvokeCommand(eventHandlerContext);
+
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return (context as SymptomContext).response;
         }
+
+        [HttpOptions("get-question")]
+        public void QuestionOptions()
+        {
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+            return;
+        }
+
+        [HttpOptions("send-response")]
+        public void ResponseOptions()
+        {
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+            return;
+        }
+
         [HttpPost("send-response")]
         public string PostResponse([FromBody] JObject data)
         {
@@ -71,6 +100,11 @@ namespace IP_Framework.API
             eventHandlerContext.contextHandler = context;
             EventHandler eventHandler = EventHandler.GetInstance();
             eventHandler.InvokeCommand(eventHandlerContext);
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return (context as SymptomContext).response;
         }
 
