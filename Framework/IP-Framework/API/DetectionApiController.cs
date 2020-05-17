@@ -20,6 +20,11 @@ namespace IP_Framework.API
             eventHandlerContext.subModuleCommand = SubModuleFunctions.MachineLearningStoreResults;
             EventHandler eventHandler = new EventHandler();
             eventHandler.InvokeCommand(eventHandlerContext);
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return "succes";
         }
 
@@ -41,6 +46,11 @@ namespace IP_Framework.API
             eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
             eventHandlerContext.subModuleCommand = SubModuleFunctions.EpidemyCheckForAreas;
             eventHandler.InvokeCommand(eventHandlerContext);
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return context.json;
         }
 
@@ -119,6 +129,11 @@ namespace IP_Framework.API
             eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
             eventHandlerContext.subModuleCommand = SubModuleFunctions.EpidemyCheckForAlert;
             eventHandler.InvokeCommand(eventHandlerContext);
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return context.json;
         }
 
@@ -133,6 +148,12 @@ namespace IP_Framework.API
             eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
             eventHandlerContext.subModuleCommand = SubModuleFunctions.GetAllNotifications;
             eventHandler.InvokeCommand(eventHandlerContext);
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+     
             return context.json;
 
         }
