@@ -74,6 +74,11 @@ namespace Quizzer
             }
             quizState = QUIZ_STATE.ANSWERING;
             Question nextQuestion = symptomsHolder.GetNextQuestion();
+            if(nextQuestion == null)
+            {
+                quizState = QUIZ_STATE.FINISHED;
+                return null;
+            }
             currentQuestionType = nextQuestion.GetQuestionType();
             currentSymptomType = nextQuestion.GetCorrespondingSymptom();
             return nextQuestion;
