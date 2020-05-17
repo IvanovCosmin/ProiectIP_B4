@@ -10,5 +10,6 @@ namespace IP_Framework.InternalDbHandler
         public static string DB_NAME = "cancer";
         public static string COLLECTION_USERS_NAME = "users";
         public static string COLLECTION_QUIZSIGS = "quizsigs";
+        public static string COLLECTION_NOTIFICATIONS = "notifications";
     }
 }
