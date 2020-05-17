@@ -194,7 +194,8 @@ namespace IP_Framework
         DataBaseAlterData,
 
         CheckSigsForUser = 501,
-        ReloadSigs = 502
+        ReloadSigs = 502,
+        GetAllNotifications = 503
     }
 
     public enum DataBaseDefines
