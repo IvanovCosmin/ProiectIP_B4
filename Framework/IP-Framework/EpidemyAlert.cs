@@ -137,6 +137,7 @@ namespace IP_Framework
 
             DBModule instance = Utils.Singleton<DBModule>.Instance;
             UserHandler userHandler = instance.GetUserHandler();
+            NotificationsHandler notifHandler = instance.GetNotifHandler();
             List<Point> points;
 
             switch (command)
@@ -144,7 +145,14 @@ namespace IP_Framework
 
                 case SubModuleFunctions.EpidemyCheckForAreas:
 
-                    points = userHandler.GetPoints();
+                    if (subModuleContextHandler.specificSearch != null)
+                    {
+                        points = userHandler.GetPointsForDisease(subModuleContextHandler.specificSearch);
+                    }
+                    else
+                    {
+                        points = userHandler.GetPoints();
+                    }
                     subModuleContextHandler.json = CreateConvexHauls(points);
                     return true;
 
@@ -159,6 +167,17 @@ namespace IP_Framework
                     points = userHandler.GetPointsForDisease(subModuleContextHandler.specificSearch);
                     Point user = new Point();
                     subModuleContextHandler.json = CheckIfPointsCauseAlert(points, user);
+                    return true;
+
+                case SubModuleFunctions.GetAllNotifications:
+
+                    BsonArray notifs = notifHandler.GetAllNotifs(subModuleContextHandler.specificSearch);
+                    BsonDocument returnJSON = new BsonDocument();
+                    returnJSON["id_user"] = subModuleContextHandler.specificSearch;
+                    returnJSON["notifications"] = notifs;
+
+                    subModuleContextHandler.json = notifs.ToString();
+
                     return true;
 
                 default:
