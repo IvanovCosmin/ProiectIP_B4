@@ -157,6 +157,16 @@ namespace IP_Framework.API
             return context.json;
 
         }
+        [HttpOptions("get-notifications")]
+        public void NotificationOptions()
+        {
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+            return;
+        }
 
     }
 }
