@@ -4,8 +4,9 @@ C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\bin\Debug\
 C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.dll
 C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\bin\Debug\netcoreapp2.1\IP-Framework.pdb
 C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csprojAssemblyReference.cache
-C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csproj.CoreCompileInputs.cache
 C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfoInputs.cache
 C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.AssemblyInfo.cs
 C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.dll
 C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.pdb
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.genruntimeconfig.cache
+C:\Users\Emanuel\Documents\GitHub\ProiectIP_B4\Framework\IP-Framework\obj\Debug\netcoreapp2.1\IP-Framework.csproj.CoreCompileInputs.cache

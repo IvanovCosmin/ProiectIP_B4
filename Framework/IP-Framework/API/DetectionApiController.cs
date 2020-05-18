@@ -72,10 +72,10 @@ namespace IP_Framework.API
             eventHandler.InvokeCommand(eventHandlerContext);
 
             var response = HttpContext.Response;
-
-            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
-            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
+             if(response != null) {
+           response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+           response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+           response.Headers.Add("Access-Control-Allow-Origin", "*");}
             return (context as SymptomContext).response;
         }
 
@@ -116,10 +116,12 @@ namespace IP_Framework.API
             EventHandler eventHandler = EventHandler.GetInstance();
             eventHandler.InvokeCommand(eventHandlerContext);
             var response = HttpContext.Response;
-
-            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
-            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            response.Headers.Add("Access-Control-Allow-Origin", "*");
+            if (response != null)
+            {
+                response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+                response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                response.Headers.Add("Access-Control-Allow-Origin", "*");
+            }
             return (context as SymptomContext).response;
         }
 
