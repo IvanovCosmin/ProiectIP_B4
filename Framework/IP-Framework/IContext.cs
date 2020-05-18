@@ -9,6 +9,7 @@ namespace IP_Framework
         public byte[] context;
         public int sizeOfContext;
         public String json;
+        public string user_id;
 
         public byte[] answer;
         public int sizeOfAnswer;
