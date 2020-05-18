@@ -37,6 +37,11 @@ namespace IP_Framework.InternalDbHandler
             );
         }
 
+        public IMongoCollection<BsonDocument> GetCollection()
+        {
+            return collection;
+        }
+
         public List<Point> GetPoints()
         {
             List<Point> points = new List<Point>();
