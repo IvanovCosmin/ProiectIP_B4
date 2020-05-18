@@ -10,15 +10,15 @@ namespace IP_Framework
         private EventHandler fatherHandler;
 
         public static double AreaAroundYuu = 0.2;
-        public static int AreaAroundYuuCases = 4;
+        public static int AreaAroundYuuCases = 5;
 
         public static double NeighourHood = 1.5;
-        public static int NeighourHoodCases = 4;
+        public static int NeighourHoodCases = 20;
 
         public static double Town = 10;
         public static int TownCases = 150;
 
-        public static double Country = 4;
+        public static double Country = 100;
         public static int CountryCases = 1000;
 
         public EpidemyAlert(EventHandler father)
