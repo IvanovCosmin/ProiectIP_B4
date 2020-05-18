@@ -31,8 +31,8 @@ namespace IP_Framework.InternalDbHandler
 
                 try
                 {
-                    point.x = (double)doc["lon"] * Math.PI / 180.0;
-                    point.y = (double)doc["lat"] * Math.PI / 180.0;
+                    point.x = (double)doc["lon"].ToDouble() * Math.PI / 180.0;
+                    point.y = (double)doc["lat"].ToDouble() * Math.PI / 180.0;
 
                     if (ConvexHaul.Distance(user, point) < distance)
                     {
