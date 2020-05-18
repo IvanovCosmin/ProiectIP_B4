@@ -10,7 +10,7 @@ namespace IP_Framework
         private EventHandler fatherHandler;
 
         public static double AreaAroundYuu = 0.2;
-        public static int AreaAroundYuuCases = 8;
+        public static int AreaAroundYuuCases = 5;
 
         public static double NeighourHood = 1.5;
         public static int NeighourHoodCases = 20;
@@ -166,8 +166,12 @@ namespace IP_Framework
                 case SubModuleFunctions.EpidemyCheckForAlert:
 
                     points = userHandler.GetPointsForDisease(subModuleContextHandler.specificSearch);
-                    Point user = new Point();
-                    subModuleContextHandler.json = CheckIfPointsCauseAlert(points, user, subModuleContextHandler.specificSearch);
+
+                    String user_id = subModuleContextHandler.user_id;
+                    Point user = userHandler.GetPointsForUser(user_id);
+
+                    if(user != null)
+                        subModuleContextHandler.json = CheckIfPointsCauseAlert(points, user, subModuleContextHandler.specificSearch);
                     return true;
 
                 case SubModuleFunctions.GetAllNotifications:
