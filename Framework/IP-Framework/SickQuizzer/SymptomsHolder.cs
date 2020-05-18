@@ -6,6 +6,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
+using IP_Framework.InternalDbHandler;
+using IP_Framework.Utils;
+using System.Linq;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace Quizzer
 {
@@ -67,7 +72,7 @@ namespace Quizzer
             return signatures.Count;
         }
 
-        public string GetJsonVerdict()
+        public async System.Threading.Tasks.Task<string> GetJsonVerdictAsync(int id)
         {
             JObject jObject = new JObject();
             JArray jArray = new JArray();
@@ -80,11 +85,24 @@ namespace Quizzer
                     verdicts.Add(signature);
                 }
             }
-            foreach(QuSignature signature in verdicts)
+
+            UserHandler userHandler = new UserHandler(Singleton<DBInstance>.Instance);
+
+            var collection = userHandler.GetCollection();
+            foreach (QuSignature signature in verdicts)
             {
+                var document = new BsonDocument
+                {
+                    {"disease", signature.name },
+                    {"date", DateTime.Now.ToString() }
+                };
                 jArray.Add(signature.name);
+                var filter = Builders<BsonDocument>.Filter.Eq("userid", id.ToString());
+                var update = Builders<BsonDocument>.Update.Push("diseases", document);
+                var result = await collection.UpdateOneAsync(filter, update);
             }
-            if(jArray.Count == 0)
+
+            if (jArray.Count == 0)
             {
                 jArray.Add("nimic"); // verdictul o sa contina "nimic" daca nu ai adaugat nimic.
             }
