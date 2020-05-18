@@ -1,6 +1,11 @@
 ﻿using System;
+using IP_Framework.InternalDbHandler;
+using IP_Framework.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using MongoDB.Bson;
 
 namespace IP_Framework.API
 {
@@ -20,20 +25,37 @@ namespace IP_Framework.API
             eventHandlerContext.subModuleCommand = SubModuleFunctions.MachineLearningStoreResults;
             EventHandler eventHandler = new EventHandler();
             eventHandler.InvokeCommand(eventHandlerContext);
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return "succes";
         }
 
         [HttpPost("check-epidemic-haul")]
-        public string Post( [FromBody] Command command)
+        public string PostHaul( [FromBody] JObject data)
         {
-            var json = command.ToString();
             EventHandler eventHandler = new EventHandler();
-            IContext context = new EpidemyContext(json);
+            EpidemyContext context = new EpidemyContext();
+            if (data.ContainsKey("disease"))
+            {
+                context.specificSearch = data["disease"].ToObject<String>();
+            }
+            else
+            {
+                context.specificSearch = null;
+            }
             EventHandlerContext eventHandlerContext = new EventHandlerContext();
             eventHandlerContext.contextHandler = context;
             eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
             eventHandlerContext.subModuleCommand = SubModuleFunctions.EpidemyCheckForAreas;
             eventHandler.InvokeCommand(eventHandlerContext);
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return context.json;
         }
 
@@ -65,7 +87,7 @@ namespace IP_Framework.API
             response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
             response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
             response.Headers.Add("Access-Control-Allow-Origin", "*");
-            return; 
+            return;
         }
 
         [HttpOptions("send-response")]
@@ -102,17 +124,90 @@ namespace IP_Framework.API
         }
 
         [HttpPost("check-epidemic")]
-        public String Post([FromBody] String disease)
+        public String GetEpidemic([FromBody] JObject data)
         {
             EventHandler eventHandler = new EventHandler();
             EpidemyContext context = new EpidemyContext();
-            context.specificSearch = disease;
+            context.specificSearch = data["disease"].ToObject<String>();
             EventHandlerContext eventHandlerContext = new EventHandlerContext();
             eventHandlerContext.contextHandler = context;
             eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
             eventHandlerContext.subModuleCommand = SubModuleFunctions.EpidemyCheckForAlert;
             eventHandler.InvokeCommand(eventHandlerContext);
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
             return context.json;
+        }
+
+        [HttpPost("get-notifications")]
+        public string GetNotifs([FromBody] JObject data)
+        {
+            EventHandler eventHandler = new EventHandler();
+            EpidemyContext context = new EpidemyContext();
+            context.specificSearch = data["id"].ToObject<String>();
+            EventHandlerContext eventHandlerContext = new EventHandlerContext();
+            eventHandlerContext.contextHandler = context;
+            eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
+            eventHandlerContext.subModuleCommand = SubModuleFunctions.GetAllNotifications;
+            eventHandler.InvokeCommand(eventHandlerContext);
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+     
+            return context.json;
+
+        }
+        [HttpOptions("get-notifications")]
+        public void NotificationOptions()
+        {
+            var response = HttpContext.Response;
+
+            response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+            response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+            return;
+        }
+
+        [HttpPost("get-internal-id")]
+        public async System.Threading.Tasks.Task<string> GetEpidemicAsync([FromBody] String id)
+        {
+            DBModule internalDB = Singleton<DBModule>.Instance;
+            Console.WriteLine(id);
+            var documents = internalDB.GetUserHandler().GetCollectionData();
+            
+                foreach (BsonDocument doc in documents)
+        try { 
+                {
+                    Console.WriteLine(doc.ToString());
+                    if ((String)doc["userid"] == id)
+                        return "Exists";
+                }
+            }
+        catch(Exception e)
+            {
+                Console.WriteLine("Bad data");
+            }
+            //return "exists";
+            HttpClient client = new HttpClient();
+            var responseString = await client.GetStringAsync("https://auth-service-ip.herokuapp.com/dbAPI/diagnosisInfo/" + id);
+            UserWrapper user = new UserWrapper(id);
+            string toBeSearched = "\"longitude\":";
+            string lon = responseString.Substring(responseString.IndexOf(toBeSearched) + toBeSearched.Length);           
+            lon = lon.Remove(lon.Length - 1);
+            Console.WriteLine(lon);
+            String lat = responseString.Split(',')[1];
+            toBeSearched = "\"latitude\":";
+            lat = lat.Substring(lat.IndexOf(toBeSearched) + toBeSearched.Length);
+            Console.WriteLine(lat);
+            user.SetLat(lat);
+            user.SetLon(lon);
+            internalDB.GetUserHandler().InsertUser(user);
+            return "Created";
         }
 
 

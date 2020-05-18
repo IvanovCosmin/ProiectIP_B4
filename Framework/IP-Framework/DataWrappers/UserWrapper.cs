@@ -9,10 +9,14 @@ namespace IP_Framework
     {
         public string userid { get; set; }
         List<string> Symptoms { get; set; }
+        public String lat { get; set; }
+        public String lon { get; set; }
         public UserWrapper(string userid)
         {
             this.userid = userid;
             Symptoms = new List<string>();
+            lat = "";
+            lon = "";
         }
         public void AddNewSymptom(string symptom)
         {
@@ -26,6 +30,16 @@ namespace IP_Framework
         public bool HasSymptomInArea(string Symptom)
         {
             return true;
+        }
+
+        public void SetLon(String lon)
+        {
+            this.lon = lon;
+        }
+
+        public void SetLat(String lat)
+        {
+            this.lat = lat;
         }
     }
 }

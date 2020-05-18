@@ -185,7 +185,6 @@ namespace IP_Framework
         ImageAdapt,
 
         EpidemyCheckForAlert = 301,
-        EpidemyCheckForSpecificAlert,
         EpidemyCheckForAreas,
 
         DataBaseSaveData = 401,
@@ -194,7 +193,8 @@ namespace IP_Framework
         DataBaseAlterData,
 
         CheckSigsForUser = 501,
-        ReloadSigs = 502
+        ReloadSigs = 502,
+        GetAllNotifications = 503
     }
 
     public enum DataBaseDefines
