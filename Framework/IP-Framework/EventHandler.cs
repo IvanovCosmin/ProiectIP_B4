@@ -185,7 +185,6 @@ namespace IP_Framework
         ImageAdapt,
 
         EpidemyCheckForAlert = 301,
-        EpidemyCheckForSpecificAlert,
         EpidemyCheckForAreas,
 
         DataBaseSaveData = 401,

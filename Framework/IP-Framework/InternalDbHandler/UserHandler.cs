@@ -37,6 +37,11 @@ namespace IP_Framework.InternalDbHandler
             );
         }
 
+        public IMongoCollection<BsonDocument> GetCollection()
+        {
+            return collection;
+        }
+
         public List<Point> GetPoints()
         {
             List<Point> points = new List<Point>();
@@ -46,8 +51,8 @@ namespace IP_Framework.InternalDbHandler
             {
                 try
                 {
-                    double lon = (double)doc["lon"] * Math.PI / 180.0;
-                    double lat = (double)doc["lat"] * Math.PI / 180.0;
+                    double lon = (double)doc["lon"].ToDouble() * Math.PI / 180.0;
+                    double lat = (double)doc["lat"].ToDouble() * Math.PI / 180.0;
 
                     Point p = new Point(lon, lat);
                     points.Add(p);
@@ -71,14 +76,20 @@ namespace IP_Framework.InternalDbHandler
 
                 try
                 {
-                    if (doc["disease"] == disease)
+                    var simptoms = doc["simptome"].AsBsonArray;
+                    foreach (var simptom in simptoms)
                     {
-                        double lon = (double)doc["lon"] * Math.PI / 180.0;
-                        double lat = (double)doc["lat"] * Math.PI / 180.0;
+                        if (simptom == disease)
+                        {
+                            double lon = (double)doc["lon"].ToDouble() * Math.PI / 180.0;
+                            double lat = (double)doc["lat"].ToDouble() * Math.PI / 180.0;
 
-                        Point p = new Point(lon, lat);
-                        points.Add(p);
+                            Point p = new Point(lon, lat);
+                            points.Add(p);
+                            break;
+                        }
                     }
+                    
                 }
                 catch (Exception e)
                 {
@@ -88,6 +99,35 @@ namespace IP_Framework.InternalDbHandler
             }
 
             return points;
+        }
+
+        public Point GetPointsForUser(String user_id)
+        {
+            var documents = collection.Find(new BsonDocument()).ToList();
+            foreach (BsonDocument doc in documents)
+            {
+
+                try
+                {
+                    var id = doc["userid"].ToString();
+                    if (id == user_id)
+                    {
+                        double lon = (double)doc["lon"].ToDouble() * Math.PI / 180.0;
+                        double lat = (double)doc["lat"].ToDouble() * Math.PI / 180.0;
+
+                        Point p = new Point(lon, lat);
+                        return p;
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+            }
+
+            return null;
         }
 
 

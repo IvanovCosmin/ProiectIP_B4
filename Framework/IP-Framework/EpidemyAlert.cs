@@ -10,7 +10,7 @@ namespace IP_Framework
         private EventHandler fatherHandler;
 
         public static double AreaAroundYuu = 0.2;
-        public static int AreaAroundYuuCases = 8;
+        public static int AreaAroundYuuCases = 5;
 
         public static double NeighourHood = 1.5;
         public static int NeighourHoodCases = 20;
@@ -69,7 +69,7 @@ namespace IP_Framework
             return JSON;
         }
 
-        public String CheckIfPointsCauseAlert(List<Point> points, Point user)
+        public String CheckIfPointsCauseAlert(List<Point> points, Point user, String disease)
         {
             String JSON = "{areas : [";
 
@@ -90,9 +90,13 @@ namespace IP_Framework
                     counterForCountry++;
             }
 
+            DBModule instance = Utils.Singleton<DBModule>.Instance;
+            NotificationsHandler notifHandler = instance.GetNotifHandler();
+
             if (counterForAreaAroundYuu >= AreaAroundYuuCases)
             {
                 JSON = JSON + "{\"AreaAroundYou\" : 1},";
+                notifHandler.InsertNotificationToAllAffectedUsers(user, AreaAroundYuu, disease);
             }
             else
             {
@@ -102,6 +106,7 @@ namespace IP_Framework
             if (counterForNeighourHood >= NeighourHoodCases)
             {
                 JSON = JSON + "{\"NeighourHood\" : 1},";
+                notifHandler.InsertNotificationToAllAffectedUsers(user, NeighourHood, disease);
             }
             else
             {
@@ -111,6 +116,7 @@ namespace IP_Framework
             if (counterForTown >= TownCases)
             {
                 JSON = JSON + "{\"Town\" : 1},";
+                notifHandler.InsertNotificationToAllAffectedUsers(user, Town, disease);
             }
             else
             {
@@ -120,6 +126,7 @@ namespace IP_Framework
             if (counterForCountry >= CountryCases)
             {
                 JSON = JSON + "{\"Country\" : 1}]}";
+                notifHandler.InsertNotificationToAllAffectedUsers(user, Country, disease);
             }
             else
             {
@@ -156,17 +163,15 @@ namespace IP_Framework
                     subModuleContextHandler.json = CreateConvexHauls(points);
                     return true;
 
-                case SubModuleFunctions.EpidemyCheckForSpecificAlert:
-
-                    points = userHandler.GetPointsForDisease(subModuleContextHandler.specificSearch);
-                    subModuleContextHandler.json = CreateConvexHauls(points);
-                    return true;
-
                 case SubModuleFunctions.EpidemyCheckForAlert:
 
                     points = userHandler.GetPointsForDisease(subModuleContextHandler.specificSearch);
-                    Point user = new Point();
-                    subModuleContextHandler.json = CheckIfPointsCauseAlert(points, user);
+
+                    String user_id = subModuleContextHandler.user_id;
+                    Point user = userHandler.GetPointsForUser(user_id);
+
+                    if(user != null)
+                        subModuleContextHandler.json = CheckIfPointsCauseAlert(points, user, subModuleContextHandler.specificSearch);
                     return true;
 
                 case SubModuleFunctions.GetAllNotifications:

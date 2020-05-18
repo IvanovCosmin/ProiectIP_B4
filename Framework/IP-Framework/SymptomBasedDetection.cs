@@ -41,7 +41,7 @@ namespace IP_Framework
                     question = quizHandler.GetQuestion(symptomContext.id);
                     if(question == null && quizHandler.GetQuizById(symptomContext.id).IsQuizFinished())
                     {
-                        symptomContext.response = quizHandler.GetQuizById(symptomContext.id).GetSymptomsHolder().GetJsonVerdict();
+                        symptomContext.response = quizHandler.GetQuizById(symptomContext.id).GetSymptomsHolder().GetJsonVerdictAsync(symptomContext.id).Result;
                         quizHandler.RemoveById(symptomContext.id);
                         return true;
 

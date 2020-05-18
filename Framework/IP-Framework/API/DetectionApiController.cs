@@ -131,6 +131,7 @@ namespace IP_Framework.API
             EventHandler eventHandler = new EventHandler();
             EpidemyContext context = new EpidemyContext();
             context.specificSearch = data["disease"].ToObject<String>();
+            context.user_id = data["user_id"].ToObject<String>();
             EventHandlerContext eventHandlerContext = new EventHandlerContext();
             eventHandlerContext.contextHandler = context;
             eventHandlerContext.command = EventHandlerFunctions.EpidemyAlertModule;
