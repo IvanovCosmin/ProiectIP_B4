@@ -84,7 +84,10 @@ namespace Quizzer
             {
                 jArray.Add(signature.name);
             }
-            
+            if(jArray.Count == 0)
+            {
+                jArray.Add("nimic"); // verdictul o sa contina "nimic" daca nu ai adaugat nimic.
+            }
             return jObject.ToString();
         }
 
