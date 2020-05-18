@@ -30,7 +30,9 @@ namespace IP_Framework.InternalDbHandler
                 new BsonDocument
                 {
                     { "userid", user.userid },
-                    { "simptome", simptome }
+                    { "simptome", simptome },
+                    { "lat", user.lat},
+                    { "lon", user.lon }
                 }
             );
         }
@@ -71,8 +73,8 @@ namespace IP_Framework.InternalDbHandler
                 {
                     if (doc["disease"] == disease)
                     {
-                        double lon = (double) doc["lon"] * Math.PI / 180.0;
-                        double lat = (double) doc["lat"] * Math.PI / 180.0;
+                        double lon = (double)doc["lon"] * Math.PI / 180.0;
+                        double lat = (double)doc["lat"] * Math.PI / 180.0;
 
                         Point p = new Point(lon, lat);
                         points.Add(p);
@@ -89,8 +91,11 @@ namespace IP_Framework.InternalDbHandler
         }
 
 
-
-
+        public List<BsonDocument> GetCollectionData()
+        {
+            var documents = collection.Find(new BsonDocument()).ToList();
+            return documents;
+        }
 
     }
 }
