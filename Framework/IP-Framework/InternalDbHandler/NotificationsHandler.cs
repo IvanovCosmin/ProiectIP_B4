@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Newtonsoft.Json.Linq;
 
 namespace IP_Framework.InternalDbHandler
 {
@@ -10,6 +11,51 @@ namespace IP_Framework.InternalDbHandler
     {
         private static IMongoCollection<BsonDocument> collection = null;
         private static DBInstance dBInstance;
+
+        public bool InsertNotification(BsonDocument doc)
+        {
+            collection.InsertOne(doc);
+            return true;
+        }
+
+        public bool InsertNotificationToAllAffectedUsers(Point user, double distance, String disease)
+        {
+
+            Point point = new Point();
+
+            DBModule instance = Utils.Singleton<DBModule>.Instance;
+            UserHandler userHandler = instance.GetUserHandler();
+            var documents = userHandler.GetCollectionData();
+            foreach (BsonDocument doc in documents)
+            {
+
+                try
+                {
+                    point.x = (double)doc["lon"] * Math.PI / 180.0;
+                    point.y = (double)doc["lat"] * Math.PI / 180.0;
+
+                    if (ConvexHaul.Distance(user, point) < distance)
+                    {
+                        BsonDocument document = new BsonDocument();
+                        document["id_user"] = doc["userid"];
+                        document["text"] = disease;
+                        BsonArray temp = new BsonArray();
+                        document["links"] = temp;
+
+                        InsertNotification(document);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+            }
+
+
+            return true;
+        }
 
         public NotificationsHandler(DBInstance dBInstance)
         {
