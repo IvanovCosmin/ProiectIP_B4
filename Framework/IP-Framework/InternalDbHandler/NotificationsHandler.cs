@@ -35,7 +35,7 @@ namespace IP_Framework.InternalDbHandler
                 {
                     if (doc["id_user"] == user_id)
                     {
-                        doc["category"] = "epidemy";
+                        doc["category"] = "Epidemie";
                         doc.Remove("_id");
                         notifs.Add(doc);
                     }
