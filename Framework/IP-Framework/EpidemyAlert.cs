@@ -142,6 +142,10 @@ namespace IP_Framework
 
             EpidemyContext subModuleContextHandler = contextHandler as EpidemyContext;
 
+
+            if (subModuleContextHandler == null)
+                return false;
+
             DBModule instance = Utils.Singleton<DBModule>.Instance;
             UserHandler userHandler = instance.GetUserHandler();
             NotificationsHandler notifHandler = instance.GetNotifHandler();
